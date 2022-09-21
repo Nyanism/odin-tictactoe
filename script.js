@@ -1,13 +1,12 @@
 const gameBoard = (() => {
-  const board = ["X","O","O","X","O","O","X","O","O"];
+  const board = ["","","","","","","","",""];
   return {board};
 })();
 
-const displayController = (() => {
+const displayController = (() => { 
   
   const displayBoard = (board) => {
     for(let ii=0; ii<9; ii++) {
-      
       switch(ii) {
         case 0:
           document.querySelector(".one").textContent = board[ii];
@@ -44,11 +43,60 @@ const displayController = (() => {
         case 8:
           document.querySelector(".nine").textContent = board[ii];
           break; 
-      }
-    }
+      };
+    };
   };
 
-  return {displayBoard};
+  const addMarkers = (board) => {
+    let cells = document.querySelectorAll(".cell");
+    cells.forEach((cell) => {
+      cell.addEventListener("click", () => {
+        if(cell.textContent === "") {
+          switch(cell.classList.item(1)){
+            case "one":
+              board[0] = currentPlayer.symbol;
+              break;
+
+            case "two":
+              board[1] = currentPlayer.symbol;
+              break;
+            
+            case "three":
+              board[2] = currentPlayer.symbol;
+              break;
+
+            case "four":
+              board[3] = currentPlayer.symbol;
+              break;
+            
+            case "five":
+              board[4] = currentPlayer.symbol;
+              break;
+
+            case "six":
+              board[5] = currentPlayer.symbol;
+              break;
+
+            case "seven":
+              board[6] = currentPlayer.symbol;
+              break;
+
+            case "eight":
+              board[7] = currentPlayer.symbol;
+              break;
+
+            case "nine":
+              board[8] = currentPlayer.symbol;
+              break;
+          }
+        };
+
+        displayBoard(board);
+      });
+    });
+  };
+
+  return {displayBoard, addMarkers};
 })();
 
 const player = (name, symbol) => {
@@ -57,4 +105,6 @@ const player = (name, symbol) => {
 
 let player1 = player("Player 1", "X");
 let player2 = player("Player 2", "O");
+let currentPlayer = player1;
 displayController.displayBoard(gameBoard.board);
+displayController.addMarkers(gameBoard.board);
