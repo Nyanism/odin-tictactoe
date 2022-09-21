@@ -1,0 +1,13 @@
+.game-grid {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+
+  font-size: 5rem;
+}
+
+.game-grid>div {
+  text-align: center;
+  vertical-align: center;
+  border: 1px solid black;
+}
