@@ -90,8 +90,12 @@ const displayController = (() => {
               break;
           }
         };
-
         displayBoard(board);
+        if(currentPlayer === player1) {
+          currentPlayer = player2;
+        } else {
+          currentPlayer = player1;
+        }
       });
     });
   };
