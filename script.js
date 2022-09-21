@@ -45,6 +45,42 @@ const displayController = (() => {
           break; 
       };
     };
+
+    checkWinTie(board)
+  };
+
+  const checkWinTie = (board) => {
+    let result = document.querySelector(".result");
+    if(board[0] === board[1] && board[1] === board[2] && board[0] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[3] === board[4] && board[4] === board[5] && board[3] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[6] === board[7] && board[7] === board[8] && board[6] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[0] === board[3] && board[3] === board[6] && board[0] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[1] === board[4] && board[4] === board[7] && board[1] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[2] === board[5] && board[5] === board[8] && board[2] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[0] === board[4] && board[4] === board[8] && board[0] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    } else if(board[6] === board[4] && board[4] === board[2] && board[6] !== "") {
+      result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
+      return;
+    }
+
+    if(!board.includes("")) {
+      result.textContent = `It's a draw!`;
+      return;
+    }
   };
 
   const addMarkers = (board) => {
