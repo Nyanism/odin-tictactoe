@@ -1,150 +1,198 @@
-const gameBoard = (() => {
-  const board = ["","","","","","","","",""];
-  return {board};
+let gameBoard = (() => {
+  let board = ["", "", "", "", "", "", "", "", ""];
+  return { board };
 })();
 
-const displayController = (() => { 
-  
-  const displayBoard = (board) => {
-    for(let ii=0; ii<9; ii++) {
-      switch(ii) {
+const displayController = (() => {
+  const displayBoard = () => {
+    let board = gameBoard.board;
+    for (let ii = 0; ii < 9; ii++) {
+      switch (ii) {
         case 0:
           document.querySelector(".one").textContent = board[ii];
           break;
 
         case 1:
           document.querySelector(".two").textContent = board[ii];
-          break;  
+          break;
 
         case 2:
           document.querySelector(".three").textContent = board[ii];
           break;
-        
+
         case 3:
           document.querySelector(".four").textContent = board[ii];
-          break; 
+          break;
 
         case 4:
           document.querySelector(".five").textContent = board[ii];
-          break; 
-        
+          break;
+
         case 5:
           document.querySelector(".six").textContent = board[ii];
-          break; 
+          break;
 
         case 6:
           document.querySelector(".seven").textContent = board[ii];
-          break; 
+          break;
 
         case 7:
           document.querySelector(".eight").textContent = board[ii];
-          break; 
+          break;
 
         case 8:
           document.querySelector(".nine").textContent = board[ii];
-          break; 
-      };
-    };
+          break;
+      }
+    }
 
-    checkWinTie(board)
+    if (checkWinTie()) {
+      let cells = document.querySelectorAll(".cell");
+      cells.forEach((cell) => {
+        if(cell.textContent === ""){
+          cell.textContent = " ";
+        }
+      })
+      
+    }
   };
 
-  const checkWinTie = (board) => {
+  const checkWinTie = () => {
+    let board = gameBoard.board;
     let result = document.querySelector(".result");
-    if(board[0] === board[1] && board[1] === board[2] && board[0] !== "") {
+    if (board[0] === board[1] && board[1] === board[2] && board[0] !== "") {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[3] === board[4] && board[4] === board[5] && board[3] !== "") {
+      return true;
+    } else if (
+      board[3] === board[4] &&
+      board[4] === board[5] &&
+      board[3] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[6] === board[7] && board[7] === board[8] && board[6] !== "") {
+      return true;
+    } else if (
+      board[6] === board[7] &&
+      board[7] === board[8] &&
+      board[6] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[0] === board[3] && board[3] === board[6] && board[0] !== "") {
+      return true;
+    } else if (
+      board[0] === board[3] &&
+      board[3] === board[6] &&
+      board[0] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[1] === board[4] && board[4] === board[7] && board[1] !== "") {
+      return true;
+    } else if (
+      board[1] === board[4] &&
+      board[4] === board[7] &&
+      board[1] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[2] === board[5] && board[5] === board[8] && board[2] !== "") {
+      return true;
+    } else if (
+      board[2] === board[5] &&
+      board[5] === board[8] &&
+      board[2] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[0] === board[4] && board[4] === board[8] && board[0] !== "") {
+      return true;
+    } else if (
+      board[0] === board[4] &&
+      board[4] === board[8] &&
+      board[0] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
-    } else if(board[6] === board[4] && board[4] === board[2] && board[6] !== "") {
+      return true;
+    } else if (
+      board[6] === board[4] &&
+      board[4] === board[2] &&
+      board[6] !== ""
+    ) {
       result.textContent = `We have a winner! Congratualations ${currentPlayer.name}!`;
-      return;
+      return true;
     }
 
-    if(!board.includes("")) {
+    if (!board.includes("")) {
       result.textContent = `It's a draw!`;
-      return;
+      return true;
     }
   };
 
-  const addMarkers = (board) => {
+  const addMarkers = () => {
     let cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
       cell.addEventListener("click", () => {
-        if(cell.textContent === "") {
-          switch(cell.classList.item(1)){
+        if (cell.textContent === "") {
+          switch (cell.classList.item(1)) {
             case "one":
-              board[0] = currentPlayer.symbol;
+              gameBoard.board[0] = currentPlayer.symbol;
               break;
-
+    
             case "two":
-              board[1] = currentPlayer.symbol;
+              gameBoard.board[1] = currentPlayer.symbol;
               break;
-            
+    
             case "three":
-              board[2] = currentPlayer.symbol;
+              gameBoard.board[2] = currentPlayer.symbol;
               break;
-
+    
             case "four":
-              board[3] = currentPlayer.symbol;
+              gameBoard.board[3] = currentPlayer.symbol;
               break;
-            
+    
             case "five":
-              board[4] = currentPlayer.symbol;
+              gameBoard.board[4] = currentPlayer.symbol;
               break;
-
+    
             case "six":
-              board[5] = currentPlayer.symbol;
+              gameBoard.board[5] = currentPlayer.symbol;
               break;
-
+    
             case "seven":
-              board[6] = currentPlayer.symbol;
+              gameBoard.board[6] = currentPlayer.symbol;
               break;
-
+    
             case "eight":
-              board[7] = currentPlayer.symbol;
+              gameBoard.board[7] = currentPlayer.symbol;
               break;
-
+    
             case "nine":
-              board[8] = currentPlayer.symbol;
+              gameBoard.board[8] = currentPlayer.symbol;
               break;
-          }
+          };
         };
-        displayBoard(board);
-        if(currentPlayer === player1) {
+        displayBoard();
+        if (currentPlayer === player1) {
           currentPlayer = player2;
         } else {
           currentPlayer = player1;
-        }
+        };
       });
     });
   };
 
-  return {displayBoard, addMarkers};
+
+  return { displayBoard, addMarkers };
 })();
 
 const player = (name, symbol) => {
-  return {name, symbol};
+  return { name, symbol };
 };
 
-let player1 = player("Player 1", "X");
-let player2 = player("Player 2", "O");
-let currentPlayer = player1;
-displayController.displayBoard(gameBoard.board);
-displayController.addMarkers(gameBoard.board);
+let player1;
+let player2;
+let currentPlayer;
+let ready = false;
+let startButton = document.querySelector(".start");
+startButton.addEventListener("click", () => {
+  player1 = player(document.querySelector("#player-one").value, "X");
+  player2 = player(document.querySelector("#player-two").value, "O");
+  currentPlayer = player1;
+  gameBoard.board = ["", "", "", "", "", "", "", "", ""];
+  document.querySelector(".result").textContent = "";
+  displayController.displayBoard();
+});
+
+displayController.addMarkers();
